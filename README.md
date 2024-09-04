@@ -95,17 +95,13 @@ int main() {
 
     return 0;
 }
-
-          
-           
-  
-    
 ```
 
 
 
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/1b2e8509-7463-4c80-8825-3ab753990bb7)
+![image](https://github.com/user-attachments/assets/7b26634d-a76b-4609-b91f-1e7e78459042)
+
 
 
 
@@ -160,7 +156,6 @@ To decrypt, use the INVERSE (opposite) of the last 3 rules, and the 1st as-is (d
 
 ## PROGRAM:
 '''
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -307,12 +302,8 @@ int main() {
     return 0;
 }
 '''
-
-## OUTPUT:
-Output:![image](https://github.com/user-attachments/assets/df5f3343-0fc1-4e66-ab69-62105786fc40)
-
-
-Key text: Monarchy Plain text: instruments Cipher text: gatlmzclrqtx
+##OUTPUT:
+![image](https://github.com/user-attachments/assets/7de71291-72ed-4845-9734-95e2ba7276d7)
 
 ## RESULT:
 The program is executed successfully
@@ -347,7 +338,8 @@ The cipher can, be adapted to an alphabet with any number of letters. All arithm
 
 
 ## PROGRAM:
-'''#include <stdio.h>
+'''
+#include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -443,7 +435,7 @@ int main() {
 
 '''
 ## OUTPUT:
-OUTPUT:![image](https://github.com/user-attachments/assets/5de87fa1-6a14-47fd-bedf-872866b512f8)
+OUTPUT:![image](https://github.com/user-attachments/assets/1d259dca-5006-4ad4-bb70-549e004105ab)
 
 
 
@@ -561,7 +553,7 @@ void decipher() {
 }
 '''
 ## OUTPUT:
-OUTPUT :![image](https://github.com/user-attachments/assets/4d3fde97-dce5-4b86-8f51-c47c822404ed)
+OUTPUT :![image](https://github.com/user-attachments/assets/6f455cfe-2747-4c44-a9c1-bd9281d0e9f8)
 
 
 
@@ -707,11 +699,9 @@ int main() {
     return 0;
 }
 
-
 '''
 ##Output:
-output:![image](https://github.com/user-attachments/assets/00ec2bfc-c760-42c1-aa4b-dbc6b7ea579e)
-
+output:![image](https://github.com/user-attachments/assets/27ec1530-dc5f-4691-829c-b33fcdc67698)
 
 ## RESULT:
 The program is executed successfully
