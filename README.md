@@ -30,6 +30,7 @@ Implementation using C or pyhton code
 
 
 ## PROGRAM:
+```
 #include <stdio.h>
 #include <stdlib.h>
 // Function to perform Caesar Cipher encryption
@@ -66,6 +67,7 @@ int main() {
  caesarDecrypt(message, key);
  printf("Decrypted Message: %s", message);
  return 0;
+```
 }
 
 
