@@ -105,7 +105,8 @@ int main() {
 
 
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/311c6568-fd0e-4dc4-b374-6f8d9aa5c567)
+![image](https://github.com/user-attachments/assets/1b2e8509-7463-4c80-8825-3ab753990bb7)
+
 
 
 OUTPUT:
@@ -308,7 +309,7 @@ int main() {
 '''
 
 ## OUTPUT:
-Output:![image](https://github.com/user-attachments/assets/3621e15c-e62a-4cbf-a001-f0ef15b2ec3b)
+Output:![image](https://github.com/user-attachments/assets/df5f3343-0fc1-4e66-ab69-62105786fc40)
 
 
 Key text: Monarchy Plain text: instruments Cipher text: gatlmzclrqtx
@@ -346,8 +347,7 @@ The cipher can, be adapted to an alphabet with any number of letters. All arithm
 
 
 ## PROGRAM:
-'''
-#include <stdio.h>
+'''#include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -440,9 +440,10 @@ int main() {
     printf("Decoded message : %s\n", dec);
     return 0;
 }
+
 '''
 ## OUTPUT:
-OUTPUT:![image](https://github.com/user-attachments/assets/1112c084-b125-4994-b396-0d0e4a7a01c9)
+OUTPUT:![image](https://github.com/user-attachments/assets/5de87fa1-6a14-47fd-bedf-872866b512f8)
 
 
 
@@ -560,7 +561,8 @@ void decipher() {
 }
 '''
 ## OUTPUT:
-OUTPUT :![image](https://github.com/user-attachments/assets/1ac4c5bb-5b20-416d-a916-f5fe1801de16)
+OUTPUT :![image](https://github.com/user-attachments/assets/4d3fde97-dce5-4b86-8f51-c47c822404ed)
+
 
 
 Simulating Vigenere Cipher
@@ -705,9 +707,10 @@ int main() {
     return 0;
 }
 
+
 '''
 ##Output:
-output:![image](https://github.com/user-attachments/assets/3457bd9a-6b59-42e0-90e7-a65b61dc499d)
+output:![image](https://github.com/user-attachments/assets/00ec2bfc-c760-42c1-aa4b-dbc6b7ea579e)
 
 
 ## RESULT:
