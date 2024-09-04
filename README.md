@@ -95,12 +95,18 @@ int main() {
 
     return 0;
 }
+
+          
+           
+  
+    
 ```
-}
+
 
 
 ## OUTPUT:
-![image](https://github.com/user-attachments/assets/53abaf17-290c-4d39-95f9-370fdacbb007)
+![image](https://github.com/user-attachments/assets/311c6568-fd0e-4dc4-b374-6f8d9aa5c567)
+
 
 OUTPUT:
 Simulating Caesar Cipher
@@ -153,6 +159,7 @@ To decrypt, use the INVERSE (opposite) of the last 3 rules, and the 1st as-is (d
 
 ## PROGRAM:
 '''
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -301,7 +308,7 @@ int main() {
 '''
 
 ## OUTPUT:
-Output:![image](https://github.com/user-attachments/assets/072fc5e0-5842-4189-aafd-720692334b07)
+Output:![image](https://github.com/user-attachments/assets/3621e15c-e62a-4cbf-a001-f0ef15b2ec3b)
 
 
 Key text: Monarchy Plain text: instruments Cipher text: gatlmzclrqtx
@@ -344,150 +351,99 @@ The cipher can, be adapted to an alphabet with any number of letters. All arithm
 #include <string.h>
 #include <ctype.h>
 
-#define SIZE 5
+int keymat[3][3] = { { 1, 2, 1 }, { 2, 3, 2 }, { 2, 2, 1 } };
+int invkeymat[3][3] = { { -1, 0, 1 }, { 2, -1, 0 }, { -2, 2, -1 } };
+char key[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-void generateKeyTable(char key[], int keyLength, char keyTable[SIZE][SIZE]) {
-    int used[26] = {0};  // To track used characters
-    int i, j, k = 0;
+// Function to encode a triplet of characters
+void encode(char a, char b, char c, char ret[]) {
+    int x, y, z;
+    int posa = (int)a - 65;
+    int posb = (int)b - 65;
+    int posc = (int)c - 65;
 
-    for (i = 0; i < keyLength; i++) {
-        if (key[i] != 'j') {
-            if (used[key[i] - 'a'] == 0) {
-                used[key[i] - 'a'] = 1;
-                keyTable[k / SIZE][k % SIZE] = key[i];
-                k++;
-            }
-        }
-    }
+    x = posa * keymat[0][0] + posb * keymat[1][0] + posc * keymat[2][0];
+    y = posa * keymat[0][1] + posb * keymat[1][1] + posc * keymat[2][1];
+    z = posa * keymat[0][2] + posb * keymat[1][2] + posc * keymat[2][2];
 
-    for (i = 0; i < 26; i++) {
-        if (i + 'a' != 'j' && used[i] == 0) {
-            keyTable[k / SIZE][k % SIZE] = i + 'a';
-            k++;
-        }
-    }
+    ret[0] = key[x % 26];
+    ret[1] = key[y % 26];
+    ret[2] = key[z % 26];
+    ret[3] = '\0';
 }
 
-void search(char keyTable[SIZE][SIZE], char a, char b, int *row1, int *col1, int *row2, int *col2) {
-    int i, j;
+// Function to decode a triplet of characters
+void decode(char a, char b, char c, char ret[]) {
+    int x, y, z;
+    int posa = (int)a - 65;
+    int posb = (int)b - 65;
+    int posc = (int)c - 65;
 
-    for (i = 0; i < SIZE; i++) {
-        for (j = 0; j < SIZE; j++) {
-            if (keyTable[i][j] == a) {
-                *row1 = i;
-                *col1 = j;
-            } else if (keyTable[i][j] == b) {
-                *row2 = i;
-                *col2 = j;
-            }
-        }
-    }
-}
+    x = posa * invkeymat[0][0] + posb * invkeymat[1][0] + posc * invkeymat[2][0];
+    y = posa * invkeymat[0][1] + posb * invkeymat[1][1] + posc * invkeymat[2][1];
+    z = posa * invkeymat[0][2] + posb * invkeymat[1][2] + posc * invkeymat[2][2];
 
-void encryptPair(char keyTable[SIZE][SIZE], char a, char b, char *x, char *y) {
-    int row1, col1, row2, col2;
-
-    search(keyTable, a, b, &row1, &col1, &row2, &col2);
-
-    if (row1 == row2) {
-        *x = keyTable[row1][(col1 + 1) % SIZE];
-        *y = keyTable[row2][(col2 + 1) % SIZE];
-    } else if (col1 == col2) {
-        *x = keyTable[(row1 + 1) % SIZE][col1];
-        *y = keyTable[(row2 + 1) % SIZE][col2];
-    } else {
-        *x = keyTable[row1][col2];
-        *y = keyTable[row2][col1];
-    }
-}
-
-void decryptPair(char keyTable[SIZE][SIZE], char a, char b, char *x, char *y) {
-    int row1, col1, row2, col2;
-
-    search(keyTable, a, b, &row1, &col1, &row2, &col2);
-
-    if (row1 == row2) {
-        *x = keyTable[row1][(col1 + SIZE - 1) % SIZE];
-        *y = keyTable[row2][(col2 + SIZE - 1) % SIZE];
-    } else if (col1 == col2) {
-        *x = keyTable[(row1 + SIZE - 1) % SIZE][col1];
-        *y = keyTable[(row2 + SIZE - 1) % SIZE][col2];
-    } else {
-        *x = keyTable[row1][col2];
-        *y = keyTable[row2][col1];
-    }
-}
-
-void encrypt(char keyTable[SIZE][SIZE], char plainText[], char cipherText[]) {
-    int i, j = 0;
-    char a, b;
-
-    for (i = 0; plainText[i] != '\0'; i += 2) {
-        a = plainText[i];
-        if (plainText[i + 1] != '\0') {
-            b = plainText[i + 1];
-        } else {
-            b = 'x';
-        }
-
-        if (a == b) {
-            b = 'x';
-            i--;
-        }
-
-        encryptPair(keyTable, a, b, &cipherText[j], &cipherText[j + 1]);
-        j += 2;
-    }
-    cipherText[j] = '\0';
-}
-
-void decrypt(char keyTable[SIZE][SIZE], char cipherText[], char plainText[]) {
-    int i, j = 0;
-    char a, b;
-
-    for (i = 0; cipherText[i] != '\0'; i += 2) {
-        a = cipherText[i];
-        b = cipherText[i + 1];
-
-        decryptPair(keyTable, a, b, &plainText[j], &plainText[j + 1]);
-        j += 2;
-    }
-    plainText[j] = '\0';
+    ret[0] = key[(x % 26 < 0) ? (26 + x % 26) : (x % 26)];
+    ret[1] = key[(y % 26 < 0) ? (26 + y % 26) : (y % 26)];
+    ret[2] = key[(z % 26 < 0) ? (26 + z % 26) : (z % 26)];
+    ret[3] = '\0';
 }
 
 int main() {
-    char key[100], plainText[100], cipherText[100], decryptedText[100];
-    char keyTable[SIZE][SIZE];
-    int i, keyLength;
+    char msg[1000];
+    char enc[1000] = "";
+    char dec[1000] = "";
+    int n;
 
-    printf("Enter the key: ");
-    scanf("%s", key);
+    strcpy(msg, "AATHI");
+    printf("Input message : %s\n", msg);
 
-    for (i = 0; key[i] != '\0'; i++) {
-        key[i] = tolower(key[i]);
+    // Convert the input message to uppercase
+    for (int i = 0; i < strlen(msg); i++) {
+        msg[i] = toupper(msg[i]);
     }
 
-    keyLength = strlen(key);
-    generateKeyTable(key, keyLength, keyTable);
+    // Remove spaces
+    n = strlen(msg) % 3;
 
-    printf("Enter the plaintext: ");
-    scanf("%s", plainText);
-
-    for (i = 0; plainText[i] != '\0'; i++) {
-        plainText[i] = tolower(plainText[i]);
+    // Append padding text 'X' if necessary
+    if (n != 0) {
+        for (int i = 1; i <= (3 - n); i++) {
+            strcat(msg, "X");
+        }
     }
 
-    encrypt(keyTable, plainText, cipherText);
-    printf("Encrypted Text: %s\n", cipherText);
+    printf("Padded message : %s\n", msg);
 
-    decrypt(keyTable, cipherText, decryptedText);
-    printf("Decrypted Text: %s\n", decryptedText);
+    // Encode the message
+    for (int i = 0; i < strlen(msg); i += 3) {
+        char a = msg[i];
+        char b = msg[i + 1];
+        char c = msg[i + 2];
+        char encoded[4];
+        encode(a, b, c, encoded);
+        strcat(enc, encoded);
+    }
 
+    printf("Encoded message : %s\n", enc);
+
+    // Decode the message
+    for (int i = 0; i < strlen(enc); i += 3) {
+        char a = enc[i];
+        char b = enc[i + 1];
+        char c = enc[i + 2];
+        char decoded[4];
+        decode(a, b, c, decoded);
+        strcat(dec, decoded);
+    }
+
+    printf("Decoded message : %s\n", dec);
     return 0;
 }
 '''
 ## OUTPUT:
-OUTPUT:![image](https://github.com/user-attachments/assets/a172620f-a87c-40f2-8724-e2c065911a4b)
+OUTPUT:![image](https://github.com/user-attachments/assets/1112c084-b125-4994-b396-0d0e4a7a01c9)
+
 
 
 Simulating Hill Cipher
@@ -604,7 +560,7 @@ void decipher() {
 }
 '''
 ## OUTPUT:
-OUTPUT :![image](https://github.com/user-attachments/assets/2387f4e2-a8e4-4ea4-985d-4922bdce6d60)
+OUTPUT :![image](https://github.com/user-attachments/assets/1ac4c5bb-5b20-416d-a916-f5fe1801de16)
 
 
 Simulating Vigenere Cipher
@@ -751,7 +707,7 @@ int main() {
 
 '''
 ##Output:
-output:![image](https://github.com/user-attachments/assets/32b5d1d4-d09b-4165-8f37-1291fd88e587)
+output:![image](https://github.com/user-attachments/assets/3457bd9a-6b59-42e0-90e7-a65b61dc499d)
 
 
 ## RESULT:
