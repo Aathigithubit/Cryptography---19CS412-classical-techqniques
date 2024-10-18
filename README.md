@@ -241,10 +241,12 @@ int main() {
 ```
 ## OUTPUT :
 ![image](https://github.com/user-attachments/assets/34e5710c-c433-44e5-acd5-64a2a07d0825)
+```
 Key text: AATHI
 Plain text: saveetha
 Cipher text: pixcdhit
 Decrypted text: saveetha
+```
 
 ## RESULT:
 The program for playfair cipher method is executed successfully
