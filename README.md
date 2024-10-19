@@ -156,15 +156,7 @@ int main() {
 ```
 ## OUTPUT:
 ![image](https://github.com/user-attachments/assets/44de7709-c945-437b-9a3b-4732e2939a1e)
-```
-Enter a Secret Message: HARINI
 
-Enter number of rails: 3
-
-Encrypted message: HNAIIR
-
-Decrypted message: HARINI
-```
 
 ## RESULT:
 The program for rail fence cipher method is executed successfully
